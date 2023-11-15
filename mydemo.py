@@ -7,7 +7,7 @@ import fire
 
 from llama import Llama, Dialog
 
-from time import  time
+
 def main(
     ckpt_dir: str,
     tokenizer_path: str,
@@ -84,8 +84,6 @@ If a question does not make any sense, or is not factually coherent, explain why
             }
         ],
     ]
-
-    startTime = time()
     results = generator.chat_completion(
         dialogs,  # type: ignore
         max_gen_len=max_gen_len,
@@ -100,9 +98,7 @@ If a question does not make any sense, or is not factually coherent, explain why
             f"> {result['generation']['role'].capitalize()}: {result['generation']['content']}"
         )
         print("\n==================================\n")
-    endTime = time()
 
-    print("时间差",endTime-startTime,"秒")
 
 if __name__ == "__main__":
     fire.Fire(main)
